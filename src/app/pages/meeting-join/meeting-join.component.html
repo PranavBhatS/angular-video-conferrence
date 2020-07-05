@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Join the meeting using meeting id</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field class="full-width">
+    <mat-label>Meeting id</mat-label>
+    <input matInput [(ngModel)]="meetingId" (change)="trim()">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="warn" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="enteredMeetingId()">enter meeting</button>
+</mat-dialog-actions>

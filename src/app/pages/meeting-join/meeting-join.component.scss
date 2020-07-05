@@ -1,0 +1,15 @@
+.full-width {
+  width: 400px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .full-width {
+    width: 230px !important;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .full-width {
+    width: 204px !important;
+  }
+}

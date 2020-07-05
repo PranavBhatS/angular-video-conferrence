@@ -1,0 +1,25 @@
+<div [id]="ltd" class="local"></div>
+
+<div *ngFor="let callId of rmCalls" [id]="callId" class="remote"></div>
+
+<div class="video_audio" *ngIf="localStream">
+  <button mat-mini-fab color="primary" (click)='muteAudio()'>
+    <mat-icon *ngIf="!localStream.isAudioOn()">volume_off</mat-icon>
+    <mat-icon *ngIf="localStream.isAudioOn()">volume_up</mat-icon>
+  </button>&nbsp;&nbsp;
+  <button mat-mini-fab color="primary" (click)='muteVideo()'>
+    <mat-icon *ngIf="!localStream.isVideoOn()">videocam_off</mat-icon>
+    <mat-icon *ngIf="localStream.isVideoOn()">videocam_on</mat-icon>
+  </button>&nbsp;&nbsp;
+</div>
+<div class="leave">
+  <button mat-raised-button color="warn" (click)='leave()'>Leave</button>&nbsp;&nbsp;
+</div>
+<div class="footer-button">
+  <button mat-mini-fab color="accent">
+    <mat-icon>screen_share</mat-icon>
+  </button>&nbsp;&nbsp;
+  <button mat-mini-fab color="accent" (click)="copyMeetingId()">
+    <mat-icon>file_copy</mat-icon>
+  </button>&nbsp;&nbsp;
+</div>

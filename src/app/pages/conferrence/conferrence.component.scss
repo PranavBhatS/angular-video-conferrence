@@ -1,0 +1,46 @@
+.local {
+  position: fixed;
+  right: 1rem;
+  bottom: 4rem;
+  width: 22vw;
+  height: 22vh;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.remote {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.footer-button {
+  position: fixed;
+  bottom: 0;
+  /* left: 50%; */
+  display: flex;
+  transform: translate(15%, -22%);
+  flex-direction: column-reverse;
+}
+.leave {
+  position: fixed;
+  right: 0;
+  top: 1%;
+}
+.video_audio {
+  position: fixed;
+    bottom: 3%;
+    right: 7%;
+}
+
+@media only screen and (max-width: 600px) {
+  .video_audio {
+    right: 1%;
+  }
+  .local {
+    width: 24vw;
+  }
+}
