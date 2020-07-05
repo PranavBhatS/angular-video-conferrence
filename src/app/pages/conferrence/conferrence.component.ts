@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ConferrenceComponent implements OnInit {
   ltd = 'agora_pranav_local';
   rmCalls: string[] = [];
+  meetingid = ""
 
   private client: AgoraClient;
   localStream: Stream;
@@ -29,7 +30,8 @@ export class ConferrenceComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private _snackBar: MatSnackBar
   ) {
-    this.uid = this.activatedRoute.snapshot.params['id'];
+    this.uid = Math.floor(Math.random() * 100)//
+    this.meetingid = this.activatedRoute.snapshot.params['id'];
   }
   ngOnDestroy(): void {
     this.leave();
@@ -64,7 +66,7 @@ export class ConferrenceComponent implements OnInit {
     onSuccess?: (uid: number | string) => void,
     onFailure?: (error: Error) => void
   ): void {
-    this.client.join(null, 'my-channel', this.uid, onSuccess, onFailure);
+    this.client.join(null, this.meetingid, this.uid, onSuccess, onFailure);
   }
 
   /**
@@ -180,7 +182,7 @@ export class ConferrenceComponent implements OnInit {
     }
   }
   copyMeetingId() {
-    this.clipboard.copy(String(this.uid));
+    this.clipboard.copy(String(this.meetingid));
     this._snackBar.open("meeting id copied",'close',{
       duration: 5000
     })
