@@ -130,6 +130,8 @@ export class ConferrenceComponent implements OnInit {
         this.rmCalls.push(id);
         setTimeout(() => stream.play(id), 1000);
       }
+      // if (!this.rmCalls.includes(`agora_remote${stream.getId()}`)) this.rmCalls.push(`agora_remote${stream.getId()}`);
+      // setTimeout(() => stream.play(`agora_remote${stream.getId()}`), 1000);
     });
 
     this.client.on(ClientEvent.RemoteStreamRemoved, (evt) => {
@@ -158,14 +160,25 @@ export class ConferrenceComponent implements OnInit {
   }
 
   leave() {
-    this.client.leave(
-      () => {
-        this.client.unpublish(this.localStream); // unpublish the camera stream
+      try {
+        this._snackBar.open("You left the meeting",'close',{
+          duration: 5000
+        })
+        this.client.leave(
+          () => {
+            this.client.unpublish(this.localStream); // unpublish the camera stream
+            if(this.localStream)
+            this.localStream.close();
+            this.router.navigate(['']);
+          },
+          (err) => {
+          }
+        );
+      } catch (error) {
         this.localStream.close();
         this.router.navigate(['']);
-      },
-      (err) => {}
-    );
+      }
+
   }
   muteAudio() {
     if (this.localStream.isAudioOn()) {

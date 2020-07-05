@@ -5,13 +5,18 @@ import { ConferrenceComponent } from './pages/conferrence/conferrence.component'
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: EntryComponent,
   },
   {
     path: 'conferrence/:id',
     component: ConferrenceComponent,
   },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
