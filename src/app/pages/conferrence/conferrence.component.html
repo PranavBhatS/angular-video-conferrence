@@ -1,6 +1,11 @@
 <div [id]="ltd" class="local"></div>
 
-<div *ngFor="let callId of rmCalls" [id]="callId" class="remote"></div>
+<div class="conferrence-grid">
+  <!-- <div *ngFor="let callId of rmCalls" [id]="callId" class="remote"></div> -->
+</div>
+<div class="grid-container">
+  <div *ngFor="let callId of rmCalls" [id]="callId" class="remote"></div>
+</div>
 
 <div class="video_audio" *ngIf="localStream">
   <button mat-mini-fab color="primary" (click)='muteAudio()'>

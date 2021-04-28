@@ -8,14 +8,16 @@
   overflow: hidden;
   z-index: 1;
 }
-
-.remote {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+.conferrence-grid {
+  display: grid;
 }
+// .remote {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+// }
 
 .footer-button {
   position: fixed;
@@ -32,8 +34,8 @@
 }
 .video_audio {
   position: fixed;
-    bottom: 3%;
-    right: 7%;
+  bottom: 3%;
+  right: 7%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -43,4 +45,21 @@
   .local {
     width: 24vw;
   }
+}
+
+.grid-container {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  align-items: center;
+flex-wrap: wrap;
+justify-content:space-around;  
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  height: 500px;
+  width: 500px;
+  min-width: 500px;
 }

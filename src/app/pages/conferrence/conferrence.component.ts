@@ -126,7 +126,7 @@ export class ConferrenceComponent implements OnInit {
     this.client.on(ClientEvent.RemoteStreamSubscribed, (evt) => {
       const stream = evt.stream as Stream;
       const id = this.getRemoteId(stream);
-      if (!this.rmCalls.length) {
+      if (this.rmCalls.length>=0) {
         this.rmCalls.push(id);
         setTimeout(() => stream.play(id), 1000);
       }
@@ -153,6 +153,12 @@ export class ConferrenceComponent implements OnInit {
         console.log(`${evt.uid} left from this channel`);
       }
     });
+    this.client.on(ClientEvent.RemoteStreamAdded,(evt) => {
+      console.log(evt)
+      this._snackBar.open("stream added",'close',{
+        duration: 5000
+      })
+    })
   }
 
   private getRemoteId(stream: Stream): string {
