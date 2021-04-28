@@ -5,3 +5,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 p {
   font-size: 20px;
 }
+
+div[id^="player_"]{
+  border-radius: 40px !important;
+}
+.local {
+  div[id^="player_"]{
+    border-radius: 10px !important;
+  }
+}

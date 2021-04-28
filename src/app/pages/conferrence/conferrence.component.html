@@ -1,10 +1,8 @@
 <div [id]="ltd" class="local"></div>
 
-<div class="conferrence-grid">
-  <!-- <div *ngFor="let callId of rmCalls" [id]="callId" class="remote"></div> -->
-</div>
-<div class="grid-container">
-  <div *ngFor="let callId of rmCalls" [id]="callId" class="remote"></div>
+<div class="cards-list">
+  <div class="card" *ngFor="let callId of rmCalls" [ngClass]="{'front-view': selectedUser === callId}" (click)="selectedUserId(callId)"  [id]="callId">
+  </div>
 </div>
 
 <div class="video_audio" *ngIf="localStream">

@@ -18,7 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ConferrenceComponent implements OnInit {
   ltd = 'agora_pranav_local';
   rmCalls: string[] = [];
-  meetingid = ""
+  meetingid = "";
+  selectedUser = '';
 
   private client: AgoraClient;
   localStream: Stream;
@@ -126,7 +127,7 @@ export class ConferrenceComponent implements OnInit {
     this.client.on(ClientEvent.RemoteStreamSubscribed, (evt) => {
       const stream = evt.stream as Stream;
       const id = this.getRemoteId(stream);
-      if (this.rmCalls.length>=0) {
+      if (this.rmCalls.length >= 0) {
         this.rmCalls.push(id);
         setTimeout(() => stream.play(id), 1000);
       }
@@ -153,9 +154,9 @@ export class ConferrenceComponent implements OnInit {
         console.log(`${evt.uid} left from this channel`);
       }
     });
-    this.client.on(ClientEvent.RemoteStreamAdded,(evt) => {
+    this.client.on(ClientEvent.RemoteStreamAdded, (evt) => {
       console.log(evt)
-      this._snackBar.open("stream added",'close',{
+      this._snackBar.open("stream added", 'close', {
         duration: 5000
       })
     })
@@ -166,24 +167,24 @@ export class ConferrenceComponent implements OnInit {
   }
 
   leave() {
-      try {
-        this._snackBar.open("You left the meeting",'close',{
-          duration: 5000
-        })
-        this.client.leave(
-          () => {
-            this.client.unpublish(this.localStream); // unpublish the camera stream
-            if(this.localStream)
+    try {
+      this._snackBar.open("You left the meeting", 'close', {
+        duration: 5000
+      })
+      this.client.leave(
+        () => {
+          this.client.unpublish(this.localStream); // unpublish the camera stream
+          if (this.localStream)
             this.localStream.close();
-            this.router.navigate(['']);
-          },
-          (err) => {
-          }
-        );
-      } catch (error) {
-        this.localStream.close();
-        this.router.navigate(['']);
-      }
+          this.router.navigate(['']);
+        },
+        (err) => {
+        }
+      );
+    } catch (error) {
+      this.localStream.close();
+      this.router.navigate(['']);
+    }
 
   }
   muteAudio() {
@@ -202,8 +203,16 @@ export class ConferrenceComponent implements OnInit {
   }
   copyMeetingId() {
     this.clipboard.copy(String(this.meetingid));
-    this._snackBar.open("meeting id copied",'close',{
+    this._snackBar.open("meeting id copied", 'close', {
       duration: 5000
     })
+  }
+  selectedUserId(callerId) {
+    if(this.rmCalls.length<=1) return;
+    if (callerId === this.selectedUser) {
+      return this.selectedUser = ''
+    }
+
+    this.selectedUser = callerId;
   }
 }
